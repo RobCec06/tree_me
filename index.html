@@ -31,6 +31,25 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes flash {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .vortex-effect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.85);
+      z-index: 999;
+      animation: flash 800ms ease-out forwards;
+      pointer-events: none;
+    }
+
     .bg-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -51,35 +70,17 @@
       z-index: 2;
     }
 
-    .butterfly {
-      position: fixed;
-      width: 50px;
-      height: 50px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Morpho_menelaus_MHNT_dos.jpg/320px-Morpho_menelaus_MHNT_dos.jpg') no-repeat center/cover;
-      pointer-events: none;
-      z-index: 2;
-      animation: butterflyFly 20s ease-in-out infinite;
-    }
-
-    @keyframes butterflyFly {
-      0%   { transform: translate(0, 0) rotate(0deg); }
-      25%  { transform: translate(100px, -100px) rotate(15deg); }
-      50%  { transform: translate(-150px, -200px) rotate(-15deg); }
-      75%  { transform: translate(80px, -100px) rotate(10deg); }
-      100% { transform: translate(0, 0) rotate(0deg); }
-    }
-
-    @keyframes blink {
-      0% { opacity: 0.2; }
-      100% { opacity: 1; }
-    }
-
     @keyframes moveFirefly {
       0%   { transform: translate(0, 0); }
       25%  { transform: translate(30px, -40px); }
       50%  { transform: translate(-20px, 50px); }
       75%  { transform: translate(40px, -30px); }
       100% { transform: translate(0, 0); }
+    }
+
+    @keyframes blink {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
     }
 
     .firefly:nth-child(1) {
@@ -95,6 +96,26 @@
       animation: moveFirefly 12s linear infinite, blink 2s ease-in-out infinite alternate;
     }
 
+    .butterfly {
+      position: fixed;
+      width: 64px;
+      height: 64px;
+      background-image: url('https://i.imgur.com/hLEdRYM.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      animation: flyAcross 15s linear infinite steps(2);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    @keyframes flyAcross {
+      0% { transform: translate(-10vw, 10vh); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: translate(50vw, -20vh); opacity: 1; }
+      90% { opacity: 0.5; }
+      100% { transform: translate(110vw, -30vh); opacity: 0; }
+    }
+
     .profile {
       margin-top: 4rem;
       text-align: center;
@@ -106,6 +127,7 @@
       height: 130px;
       border-radius: 50%;
       object-fit: cover;
+      border: 4px solid #fff;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
       transition: transform 0.3s ease;
     }
@@ -184,16 +206,7 @@
   <div class="firefly"></div>
   <div class="firefly"></div>
   <div class="firefly"></div>
-  <div class="firefly"></div>
-  <div class="firefly"></div>
-  <div class="firefly"></div>
-  <div class="firefly"></div>
-  <div class="firefly"></div>
-  <div class="firefly"></div>
-  <div class="firefly"></div>
-  <div class="firefly"></div>
-  <div class="firefly"></div>
-  <div class="butterfly" style="top: 70%; left: 40%;"></div>
+  <div class="butterfly"></div>
 
   <div class="profile">
     <img src="IMG_20240210_041834_101.jpg" alt="Photo de profil">
@@ -214,8 +227,7 @@
       { label: "Instagram", url: "https://www.instagram.com/polarized_price/" },
       { label: "TikTok", url: "https://www.tiktok.com/@polarized_price" },
       { label: "Twitch", url: "https://twitch.tv/rob1_price" },
-      { label: "YouTube", url: "https://www.youtube.com/@Polarized_Price"},
-
+      { label: "YouTube", url: "https://www.youtube.com/@Polarized_Price" }
     ];
 
     const container = document.getElementById("linkList");
@@ -225,7 +237,18 @@
       a.className = "link";
       a.href = link.url;
       a.textContent = link.label;
-      a.target = "_blank";
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const flash = document.createElement("div");
+        flash.className = "vortex-effect";
+        document.body.appendChild(flash);
+
+        setTimeout(() => {
+          window.open(link.url, '_blank');
+          flash.remove();
+        }, 700);
+      });
       container.appendChild(a);
     });
   </script>
