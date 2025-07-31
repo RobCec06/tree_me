@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robin Cecconi - Linktree</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Urbanist', sans-serif;
+      background: linear-gradient(180deg, #1e1e1e 0%, #2a2a2a 100%);
+      color: #f4f4f4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      animation: fadeIn 1s ease-in;
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://cdna.artstation.com/p/assets/images/images/043/124/686/large/scott-willhite-dispensary-mural-flattened-cropped.jpg?1636391222') center/cover no-repeat;
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    .firefly {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, #f0ffad 0%, #00ffbb00 70%);
+      border-radius: 50%;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .butterfly {
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Morpho_menelaus_MHNT_dos.jpg/320px-Morpho_menelaus_MHNT_dos.jpg') no-repeat center/cover;
+      pointer-events: none;
+      z-index: 2;
+      animation: butterflyFly 20s ease-in-out infinite;
+    }
+
+    @keyframes butterflyFly {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      25%  { transform: translate(100px, -100px) rotate(15deg); }
+      50%  { transform: translate(-150px, -200px) rotate(-15deg); }
+      75%  { transform: translate(80px, -100px) rotate(10deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    @keyframes blink {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes moveFirefly {
+      0%   { transform: translate(0, 0); }
+      25%  { transform: translate(30px, -40px); }
+      50%  { transform: translate(-20px, 50px); }
+      75%  { transform: translate(40px, -30px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .firefly:nth-child(1) {
+      top: 10%; left: 5%;
+      animation: moveFirefly 8s linear infinite, blink 1.5s ease-in-out infinite alternate;
+    }
+    .firefly:nth-child(2) {
+      top: 20%; right: 10%;
+      animation: moveFirefly 10s linear infinite, blink 1.8s ease-in-out infinite alternate;
+    }
+    .firefly:nth-child(3) {
+      top: 60%; left: 15%;
+      animation: moveFirefly 12s linear infinite, blink 2s ease-in-out infinite alternate;
+    }
+
+    .profile {
+      margin-top: 4rem;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .profile img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .profile img:hover {
+      transform: scale(1.05);
+    }
+
+    .profile h1 {
+      font-size: 2rem;
+      margin: 1rem 0 0.2rem;
+    }
+
+    .profile p {
+      font-size: 1rem;
+      opacity: 0.7;
+    }
+
+    .links {
+      margin-top: 3rem;
+      width: 90%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .link {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      color: #fff;
+      font-size: 1.1rem;
+      text-decoration: none;
+      position: relative;
+      transition: background 0.4s, transform 0.3s;
+      backdrop-filter: blur(6px);
+    }
+
+    .link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: width 0.3s;
+    }
+
+    .link:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .link:hover::after {
+      width: 60%;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 1rem;
+      font-size: 0.8rem;
+      opacity: 0.5;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-overlay"></div>
+
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="firefly"></div>
+  <div class="butterfly" style="top: 70%; left: 40%;"></div>
+
+  <div class="profile">
+    <img src="IMG_20240210_041834_101.jpg" alt="Photo de profil">
+    <h1>Rob1_Price</h1>
+    <p>@polarized_price</p>
+  </div>
+
+  <div class="links" id="linkList">
+    <!-- Liens insérés par JS -->
+  </div>
+
+  <footer>
+    Développer par Robin Cecconi
+  </footer>
+
+  <script>
+    const links = [
+      { label: "Instagram", url: "https://www.instagram.com/polarized_price/" },
+      { label: "TikTok", url: "https://www.tiktok.com/@polarized_price" },
+      { label: "Twitch", url: "https://twitch.tv/rob1_price" },
+      { label: "YouTube", url: "https://www.youtube.com/@Polarized_Price"},
+
+    ];
+
+    const container = document.getElementById("linkList");
+
+    links.forEach(link => {
+      const a = document.createElement("a");
+      a.className = "link";
+      a.href = link.url;
+      a.textContent = link.label;
+      a.target = "_blank";
+      container.appendChild(a);
+    });
+  </script>
+</body>
+</html>
