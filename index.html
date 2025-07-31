@@ -96,26 +96,6 @@
       animation: moveFirefly 12s linear infinite, blink 2s ease-in-out infinite alternate;
     }
 
-    .butterfly {
-      position: fixed;
-      width: 64px;
-      height: 64px;
-      background-image: url('https://i.imgur.com/hLEdRYM.png');
-      background-repeat: no-repeat;
-      background-size: cover;
-      animation: flyAcross 15s linear infinite steps(2);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    @keyframes flyAcross {
-      0% { transform: translate(-10vw, 10vh); opacity: 0; }
-      10% { opacity: 1; }
-      50% { transform: translate(50vw, -20vh); opacity: 1; }
-      90% { opacity: 0.5; }
-      100% { transform: translate(110vw, -30vh); opacity: 0; }
-    }
-
     .profile {
       margin-top: 4rem;
       text-align: center;
@@ -206,7 +186,6 @@
   <div class="firefly"></div>
   <div class="firefly"></div>
   <div class="firefly"></div>
-  <div class="butterfly"></div>
 
   <div class="profile">
     <img src="IMG_20240210_041834_101.jpg" alt="Photo de profil">
